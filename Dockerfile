@@ -5,6 +5,7 @@ ENV PKG github.com/clcc2019/kubernetes-event-exporter/pkg
 
 ADD . /app
 WORKDIR /app
+RUN go get
 RUN CGO_ENABLED=0 GOOS=linux GO11MODULE=on go build -ldflags="-s -w -X ${PKG}/version.Version=${VERSION}" -a -o /main .
 
 FROM gcr.io/distroless/base-debian12:nonroot
